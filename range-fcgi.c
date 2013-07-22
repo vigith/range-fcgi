@@ -129,6 +129,10 @@ static void *doit(void *a){
     {
       static pthread_mutex_t accept_mutex = PTHREAD_MUTEX_INITIALIZER;
 
+      apr_pool_t* sub_pool;
+
+      apr_pool_create(&sub_pool, pool);
+
       /* zero it out */
       bzero(r_query, QUERY_STR_SIZE);
       r_status = 0;
@@ -144,7 +148,7 @@ static void *doit(void *a){
 
       
       r_status = get_range_query(&request, r_query);
-      rr = range_expand(lr, pool, r_query);
+      rr = range_expand(lr, sub_pool, r_query);
 
       FCGX_FPrintF(request.out, "Content-type: text/plain\r\n");
       
@@ -169,6 +173,7 @@ static void *doit(void *a){
       	FCGX_FPrintF(request.out, "%s\n", range_request_compressed(rr));
       }
       
+      apr_pool_destroy(sub_pool);
 
       FCGX_Finish_r(&request);
 
