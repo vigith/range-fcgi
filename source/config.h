@@ -7,6 +7,9 @@
 /* Define to 1 if you have the `bzero' function. */
 #define HAVE_BZERO 1
 
+/* Define to 1 if you have the <curl/curl.h> header file. */
+#define HAVE_CURL_CURL_H 1
+
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #define HAVE_DLFCN_H 1
 
@@ -24,6 +27,9 @@
 
 /* Define to 1 if you have the `crange' library (-lcrange). */
 #define HAVE_LIBCRANGE 1
+
+/* Define to 1 if you have the `curl' library (-lcurl). */
+#define HAVE_LIBCURL 1
 
 /* Define to 1 if you have the `fcgi' library (-lfcgi). */
 #define HAVE_LIBFCGI 1

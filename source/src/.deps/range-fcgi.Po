@@ -20,13 +20,24 @@ range-fcgi.o: range-fcgi.c /usr/local/include/fcgi_stdio.h \
  /usr/include/alloca.h /usr/include/string.h /usr/include/bits/string.h \
  /usr/include/bits/string2.h /usr/include/unistd.h \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
- /usr/include/bits/confname.h /usr/include/getopt.h \
- /usr/include/libcrange.h /usr/include/apr-1/apr_pools.h \
- /usr/include/apr-1/apr.h /usr/include/apr-1/apr-x86_64.h \
+ /usr/include/bits/confname.h /usr/include/getopt.h /usr/include/ctype.h \
+ /usr/include/curl/curl.h /usr/include/curl/curlver.h \
+ /usr/include/curl/curlbuild.h /usr/include/curl/curlbuild-64.h \
  /usr/include/sys/socket.h /usr/include/sys/uio.h /usr/include/bits/uio.h \
  /usr/include/bits/socket.h /usr/include/bits/sockaddr.h \
  /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
  /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
+ /usr/include/curl/curlrules.h \
+ /usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/limits.h \
+ /usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/syslimits.h \
+ /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+ /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+ /usr/include/sys/time.h /usr/include/curl/easy.h \
+ /usr/include/curl/multi.h /usr/include/curl/curl.h \
+ /usr/include/curl/typecheck-gcc.h /usr/include/libcrange.h \
+ /usr/include/apr-1/apr_pools.h /usr/include/apr-1/apr.h \
+ /usr/include/apr-1/apr-x86_64.h \
  /usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/wchar.h /usr/include/sys/wait.h \
  /usr/include/signal.h /usr/include/bits/signum.h \
@@ -34,11 +45,6 @@ range-fcgi.o: range-fcgi.c /usr/local/include/fcgi_stdio.h \
  /usr/include/bits/sigcontext.h /usr/include/bits/sigstack.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
  /usr/include/sys/resource.h /usr/include/bits/resource.h \
- /usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/limits.h \
- /usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/syslimits.h \
- /usr/include/limits.h /usr/include/bits/posix1_lim.h \
- /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
- /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
  /usr/include/apr-1/apr_errno.h /usr/include/errno.h \
  /usr/include/bits/errno.h /usr/include/linux/errno.h \
  /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
@@ -142,13 +148,15 @@ range-fcgi.o: range-fcgi.c /usr/local/include/fcgi_stdio.h \
 
 /usr/include/getopt.h:
 
-/usr/include/libcrange.h:
+/usr/include/ctype.h:
 
-/usr/include/apr-1/apr_pools.h:
+/usr/include/curl/curl.h:
 
-/usr/include/apr-1/apr.h:
+/usr/include/curl/curlver.h:
 
-/usr/include/apr-1/apr-x86_64.h:
+/usr/include/curl/curlbuild.h:
+
+/usr/include/curl/curlbuild-64.h:
 
 /usr/include/sys/socket.h:
 
@@ -167,6 +175,42 @@ range-fcgi.o: range-fcgi.c /usr/local/include/fcgi_stdio.h \
 /usr/include/asm/sockios.h:
 
 /usr/include/asm-generic/sockios.h:
+
+/usr/include/curl/curlrules.h:
+
+/usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/limits.h:
+
+/usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/bits/posix1_lim.h:
+
+/usr/include/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/bits/posix2_lim.h:
+
+/usr/include/bits/xopen_lim.h:
+
+/usr/include/sys/time.h:
+
+/usr/include/curl/easy.h:
+
+/usr/include/curl/multi.h:
+
+/usr/include/curl/curl.h:
+
+/usr/include/curl/typecheck-gcc.h:
+
+/usr/include/libcrange.h:
+
+/usr/include/apr-1/apr_pools.h:
+
+/usr/include/apr-1/apr.h:
+
+/usr/include/apr-1/apr-x86_64.h:
 
 /usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stdint.h:
 
@@ -195,22 +239,6 @@ range-fcgi.o: range-fcgi.c /usr/local/include/fcgi_stdio.h \
 /usr/include/sys/resource.h:
 
 /usr/include/bits/resource.h:
-
-/usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/limits.h:
-
-/usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/syslimits.h:
-
-/usr/include/limits.h:
-
-/usr/include/bits/posix1_lim.h:
-
-/usr/include/bits/local_lim.h:
-
-/usr/include/linux/limits.h:
-
-/usr/include/bits/posix2_lim.h:
-
-/usr/include/bits/xopen_lim.h:
 
 /usr/include/apr-1/apr_errno.h:
 

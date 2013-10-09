@@ -14,6 +14,7 @@ AC_PROG_CC
 # Checks for libraries.
 AC_CHECK_LIB(crange, range_expand, [], [exit 1])
 AC_CHECK_LIB(pthread, pthread_create, [], [exit 1])
+AC_CHECK_LIB(curl, curl_unescape, [], [exit 1])
 AC_CHECK_LIB(apr-1, apr_initialize, [], [exit 1])
 AC_CHECK_LIB(fcgi, FCGX_InitRequest, [], [exit 1])
 
@@ -21,7 +22,7 @@ LT_INIT
 AC_CONFIG_MACRO_DIR([m4])
 
 # Checks for header files.
-AC_CHECK_HEADERS([stdlib.h string.h unistd.h fcgiapp.h fcgi_stdio.h ])
+AC_CHECK_HEADERS([stdlib.h string.h unistd.h fcgiapp.h fcgi_stdio.h curl/curl.h])
 
 AC_DEFUN([AC_CHECK_APR],[
 AC_PATH_PROG(aprconfig,apr-config)

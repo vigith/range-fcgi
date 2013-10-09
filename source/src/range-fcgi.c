@@ -8,12 +8,16 @@
 #include <string.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <ctype.h>
+
+/* URL unescape */
+#include <curl/curl.h>
 
 /* range */
 #include <libcrange.h>
 #include <apr_pools.h>
 
-// gcc -I /usr/local/include/ -I/usr/include/apr-1/ -I /home/vigith/range/libcrange/source/src/ -L /usr/local/lib/ -lcrange -lapr-1 -lpthread range-fcgi.c -lfcgi
+// gcc -I /usr/local/include/ -I/usr/include/apr-1/ -I /home/vigith/range/libcrange/source/src/ -L /usr/local/lib/ -lcrange -lapr-1 -lpthread range-fcgi.c -lfcgi -lcurl
 
 /* how many threads do we need */
 #define THREAD_COUNT 1
@@ -21,6 +25,7 @@
 
 static int get_range_query(FCGX_Request *, char *); /* get the range request */
 static void invalid_request(FCGX_Request *, char *, char *); /* send invalid request!  */
+char *url_decode(char *);
 static void * doit(void *);	/* thread worker */
 
 /* TODO: Comment */
@@ -47,12 +52,15 @@ static int get_range_query(FCGX_Request *rq, char *query) {
   char *method = FCGX_GetParam("REQUEST_METHOD", rq->envp);
   char *script_name = FCGX_GetParam("SCRIPT_NAME", rq->envp);
   int list = -1;			/* list or expand? */
+  char *decoded_url;
 
   /* accept only GET && POST */
   if(strcmp(method, "GET") != 0 && strcmp(method, "POST") != 0) {
     invalid_request(rq, "401", "Only GET || POST Request_Method Allowed");
   } else if (strcmp(method, "GET") == 0) {
-    strcpy(query,FCGX_GetParam("QUERY_STRING", rq->envp));
+    decoded_url = curl_unescape(FCGX_GetParam("QUERY_STRING", rq->envp), 0);
+    strcpy(query, decoded_url);
+    curl_free(decoded_url);
   } else if (strcmp(method, "POST") == 0) {
     /* TODO: i might have to loop this in while and do a strcat + realloc if i need to increase
        string length at runtime */
@@ -100,13 +108,10 @@ static int get_range_query(FCGX_Request *rq, char *query) {
 /* thread function */
 /* TODO: Comment */
 static void *doit(void *a){
-  int rc, i, thread_id = (pthread_t) a;
-  pid_t pid = getpid();
+  int rc, thread_id = (pthread_t) a;
   FCGX_Request request;
   apr_pool_t* pool;
   struct range_request* rr;
-  const char **nodes;
-  int debug = 1;
   struct libcrange *lr;
   char *config_file = NULL;
   char * r_query;		/* range query */
@@ -156,8 +161,8 @@ static void *doit(void *a){
       if (range_request_has_warnings(rr)) {
       	const char *warnings = range_request_warnings(rr);
       	FCGX_FPrintF(request.out,
-      		     "RangeException: %s\r\n",
-      		     warnings);
+      		     "RangeException: %s\r\nRange_FCGI_Thread_Id: %d\r\n",
+      		     warnings, thread_id);
       }
 
       /* End Delimiter */
@@ -186,6 +191,7 @@ static void *doit(void *a){
 
   return NULL;
 }
+
 
 /* and thus all started */
 int main(void) {
